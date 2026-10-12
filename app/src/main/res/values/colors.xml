@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Material 3 colour roles, light theme.
+    Made from one teal seed colour (#006B56) the way Material Theme Builder does it.
+    To match your Figma design, copy the hex values from Figma into these.
+-->
+<resources>
+    <color name="m3_primary">#006B56</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_primary_container">#7FF8D3</color>
+    <color name="m3_on_primary_container">#002018</color>
+
+    <color name="m3_secondary">#4B635A</color>
+    <color name="m3_on_secondary">#FFFFFF</color>
+    <color name="m3_secondary_container">#CDE8DC</color>
+    <color name="m3_on_secondary_container">#072019</color>
+
+    <color name="m3_tertiary">#416277</color>
+    <color name="m3_on_tertiary">#FFFFFF</color>
+    <color name="m3_tertiary_container">#C5E7FF</color>
+    <color name="m3_on_tertiary_container">#001E2D</color>
+
+    <color name="m3_error">#BA1A1A</color>
+    <color name="m3_on_error">#FFFFFF</color>
+    <color name="m3_error_container">#FFDAD6</color>
+    <color name="m3_on_error_container">#410002</color>
+
+    <color name="m3_background">#F8FAF7</color>
+    <color name="m3_on_background">#191C1B</color>
+    <color name="m3_surface">#F8FAF7</color>
+    <color name="m3_on_surface">#191C1B</color>
+    <color name="m3_surface_variant">#DBE5DF</color>
+    <color name="m3_on_surface_variant">#3F4945</color>
+    <color name="m3_outline">#6F7975</color>
+    <color name="m3_outline_variant">#BFC9C3</color>
+
+    <!-- Surface containers: cards and sheets sit on these instead of using shadows -->
+    <color name="m3_surface_container_lowest">#FFFFFF</color>
+    <color name="m3_surface_container_low">#F2F4F1</color>
+    <color name="m3_surface_container">#ECEFEB</color>
+    <color name="m3_surface_container_high">#E6E9E5</color>
+    <color name="m3_surface_container_highest">#E1E3E0</color>
+
+    <!-- Launcher icon background -->
+    <color name="ic_launcher_background">#006B56</color>
+</resources>

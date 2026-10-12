@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Every size and gap in the app. Material 3 lays things out on a 4dp grid,
+    so all spacing here is a multiple of 4. Change these to match Figma.
+-->
+<resources>
+    <!-- Spacing -->
+    <dimen name="space_tiny">4dp</dimen>
+    <dimen name="space_small">8dp</dimen>
+    <dimen name="space_medium">12dp</dimen>
+    <dimen name="space_default">16dp</dimen>
+    <dimen name="space_large">24dp</dimen>
+    <dimen name="space_section">24dp</dimen>
+    <dimen name="space_xlarge">40dp</dimen>
+    <dimen name="space_top_logo">48dp</dimen>
+
+    <!-- Screen edges -->
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="login_padding">24dp</dimen>
+
+    <!-- Components -->
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="list_row_min_height">64dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="logo_box_size">88dp</dimen>
+    <dimen name="logo_icon_size">48dp</dimen>
+    <dimen name="logo_corner_radius">24dp</dimen>
+    <dimen name="avatar_size">48dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="app_icon_size">40dp</dimen>
+    <dimen name="live_dot_size">8dp</dimen>
+    <dimen name="progress_thickness">8dp</dimen>
+
+    <!-- Lines up dividers with the text, after the 24dp icon: 16 + 24 + 16 -->
+    <dimen name="divider_inset">56dp</dimen>
+</resources>

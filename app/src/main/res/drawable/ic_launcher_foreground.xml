@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- App icon: white shield with a toggle switch, on the teal background colour -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,30 L74,37.5 L74,52 C74,64.5 65.5,75.2 54,78.5 C42.5,75.2 34,64.5 34,52 L34,37.5 Z" />
+    <path
+        android:fillColor="#006B56"
+        android:pathData="M45,48 L63,48 A6,6 0 0 1 63,60 L45,60 A6,6 0 0 1 45,48 Z" />
+    <path
+        android:fillColor="#7FF8D3"
+        android:pathData="M63,50 A4,4 0 1 1 63,58 A4,4 0 1 1 63,50 Z" />
+</vector>
