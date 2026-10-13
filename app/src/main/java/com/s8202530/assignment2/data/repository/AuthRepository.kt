@@ -2,6 +2,7 @@ package com.s8202530.assignment2.data.repository
 
 import com.s8202530.assignment2.data.ApiResult
 import com.s8202530.assignment2.data.AppError
+import com.s8202530.assignment2.data.defaultHttpError
 import com.s8202530.assignment2.data.remote.Nit3213Api
 import com.s8202530.assignment2.data.remote.dto.LoginRequest
 import com.s8202530.assignment2.data.safeApiCall
@@ -40,6 +41,6 @@ class AuthRepositoryImpl @Inject constructor(
     /** The API answers 400, 401 or 404 when the ID or name is wrong. */
     private fun loginHttpError(code: Int): AppError = when (code) {
         400, 401, 403, 404 -> AppError.WRONG_CREDENTIALS
-        else -> com.s8202530.assignment2.data.defaultHttpError(code)
+        else -> defaultHttpError(code)
     }
 }

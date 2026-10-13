@@ -58,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
                 launch {
                     viewModel.loggedIn.collect { keypass ->
                         startActivity(DashboardActivity.newIntent(this@LoginActivity, keypass))
+                        finish() // Back from the Dashboard closes the app instead of reopening Login
                     }
                 }
             }
