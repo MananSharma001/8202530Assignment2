@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     Every size and gap in the app. Material 3 lays things out on a 4dp grid,
-    so all spacing here is a multiple of 4. Change these to match Figma.
+    so all spacing here is a multiple of 4.
 -->
 <resources>
     <!-- Spacing -->
@@ -25,12 +25,6 @@
     <dimen name="logo_box_size">88dp</dimen>
     <dimen name="logo_icon_size">48dp</dimen>
     <dimen name="logo_corner_radius">24dp</dimen>
-    <dimen name="avatar_size">48dp</dimen>
     <dimen name="icon_size">24dp</dimen>
-    <dimen name="app_icon_size">40dp</dimen>
-    <dimen name="live_dot_size">8dp</dimen>
-    <dimen name="progress_thickness">8dp</dimen>
 
-    <!-- Lines up dividers with the text, after the 24dp icon: 16 + 24 + 16 -->
-    <dimen name="divider_inset">56dp</dimen>
 </resources>
