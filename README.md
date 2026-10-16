@@ -44,7 +44,7 @@ The API runs on a free Render server, so the first request after a while can tak
 | `EntityMapperTest` | The description is separated out, field order is kept, labels are readable, and lists and nulls are handled. |
 | `LoginValidatorTest` | The form rules. |
 
-The ViewModel tests swap the real repositories for fakes. This works because ViewModels only depend on repository **interfaces**, which Hilt binds to the real classes.
+The ViewModel tests follow the pattern from the Testing lecture: the repository is mocked with **MockK** (`mockk()`, `coEvery { } returns`, `coVerify { }`), `Dispatchers.setMain` swaps in a `StandardTestDispatcher` in `@Before` (reset in `@After`), and `advanceUntilIdle()` runs the queued coroutines before each check. Mocking is easy here because ViewModels only depend on repository **interfaces**, which Hilt binds to the real classes.
 
 ## Architecture
 
@@ -107,7 +107,7 @@ app/src/main/java/com/s8202530/assignment2/
 | RecyclerView, SwipeRefreshLayout | Dashboard list |
 | Material Components 1.12 | Material 3 UI |
 | Kotlin Parcelize | Passing an entity from the Dashboard to Details |
-| JUnit 4, Coroutines Test, MockWebServer | Unit tests |
+| JUnit 4, MockK, Coroutines Test, MockWebServer | Unit tests |
 
 ## Git
 
