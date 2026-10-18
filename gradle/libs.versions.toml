@@ -1,8 +1,8 @@
 [versions]
-agp = "8.7.3"
-kotlin = "2.0.21"
-ksp = "2.0.21-1.0.28"
-hilt = "2.52"
+agp = "8.13.0"
+kotlin = "2.2.20"
+ksp = "2.2.20-2.0.3"
+hilt = "2.57.1"
 coreKtx = "1.15.0"
 appcompat = "1.7.0"
 activity = "1.9.3"

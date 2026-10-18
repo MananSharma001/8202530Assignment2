@@ -14,7 +14,7 @@ Each topic returns different field names, so the app doesn't hard code them. It 
 
 ## Build and run
 
-**You need:** Android Studio Ladybug (2024.2) or newer, JDK 17 (bundled with Android Studio), and an emulator or phone running Android 8.0 (API 26) or newer, with internet.
+**You need:** a recent Android Studio with JDK 17 or newer (the bundled JDK, up to Java 25, runs the build: Gradle 9.1, AGP 8.13, Kotlin 2.2), and an emulator or phone running Android 8.0 (API 26) or newer, with internet.
 
 1. Clone the repository:
    ```bash
@@ -99,7 +99,7 @@ app/src/main/java/com/s8202530/assignment2/
 
 | Library | Used for |
 |---|---|
-| Hilt 2.52 (KSP) | Dependency injection |
+| Hilt 2.57 (KSP) | Dependency injection |
 | Retrofit 2.11 + Gson | HTTP calls and JSON |
 | OkHttp logging interceptor | Shows requests in Logcat (debug builds only) |
 | Kotlin Coroutines + StateFlow | Background work and UI state |
