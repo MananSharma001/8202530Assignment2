@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Permission Manager</string>
+    <string name="app_name">NIT3213 Assignment 2</string>
 
     <!-- Login -->
-    <string name="login_title">Permission Manager</string>
+    <string name="login_title">Welcome</string>
     <string name="login_tagline">Sign in with your student ID to see your topic</string>
     <string name="student_id">Student ID</string>
     <string name="student_id_helper">8 digits, without the s</string>

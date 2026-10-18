@@ -29,6 +29,7 @@ object NetworkModule {
         // The API runs on a free Render server, which can take ~50 seconds to wake up.
         .connectTimeout(60, TimeUnit.SECONDS)
         .readTimeout(60, TimeUnit.SECONDS)
+        .writeTimeout(60, TimeUnit.SECONDS)
         .apply {
             if (BuildConfig.DEBUG) {
                 addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
@@ -49,10 +50,12 @@ object NetworkModule {
     fun provideApi(retrofit: Retrofit): Nit3213Api = retrofit.create(Nit3213Api::class.java)
 
     @Provides
+    @Singleton
     @CampusLocation
     fun provideCampus(): String = BuildConfig.CAMPUS
 
     @Provides
+    @Singleton
     @IoDispatcher
     fun provideIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 }

@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 /**
  * Logs in and returns the keypass. An interface, so ViewModel tests can use
- * a fake instead of the real network.
+ * a MockK mock instead of the real network.
  */
 interface AuthRepository {
     suspend fun login(studentId: String, firstName: String): ApiResult<String>

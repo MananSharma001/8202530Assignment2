@@ -90,4 +90,12 @@ class RepositoryTest {
 
         assertEquals(ApiResult.Error(AppError.NOT_FOUND), repo.loadDashboard("nope"))
     }
+
+    @Test
+    fun dashboard_serverError_isServer() = runTest {
+        server.enqueue(json(503, """{"error":"Unavailable"}"""))
+        val repo = DashboardRepositoryImpl(api, io = Dispatchers.IO)
+
+        assertEquals(ApiResult.Error(AppError.SERVER), repo.loadDashboard("art"))
+    }
 }

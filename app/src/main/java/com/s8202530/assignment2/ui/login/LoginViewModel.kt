@@ -57,7 +57,7 @@ class LoginViewModel @Inject constructor(
 
         _state.value = UiState(loading = true)
         viewModelScope.launch {
-            // The first name is sent exactly as typed, because the API is case sensitive.
+            // Only spaces are trimmed; capitals are kept because the API password is case sensitive.
             when (val result = authRepository.login(studentId.trim(), firstName.trim())) {
                 is ApiResult.Success -> {
                     _state.value = UiState()

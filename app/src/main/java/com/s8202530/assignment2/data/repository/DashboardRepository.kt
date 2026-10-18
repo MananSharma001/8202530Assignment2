@@ -9,7 +9,7 @@ import com.s8202530.assignment2.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
-/** Loads the entities for a keypass. An interface so tests can fake it. */
+/** Loads the entities for a keypass. An interface so tests can mock it. */
 interface DashboardRepository {
     suspend fun loadDashboard(keypass: String): ApiResult<DashboardData>
 }
