@@ -39,6 +39,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        aidl = true // Shizuku user-service interface (IUserService.aidl)
     }
 
     testOptions {
@@ -74,6 +75,10 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp.logging)
+
+    // Shizuku: run privileged `pm grant/revoke` without root (ADB-level access)
+    implementation(libs.shizuku.api)
+    implementation(libs.shizuku.provider)
 
     // Unit tests
     testImplementation(libs.junit)

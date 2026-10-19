@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Talks to the NIT3213 API -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Permission Manager: needed to see every installed app on Android 11+ -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
 
     <application
         android:name=".Assignment2App"
@@ -34,5 +40,26 @@
             android:name=".ui.details.DetailsActivity"
             android:exported="false"
             android:parentActivityName=".ui.dashboard.DashboardActivity" />
+
+        <!-- Permission Manager, opened from the Dashboard -->
+        <activity
+            android:name=".ui.permissions.PermissionsActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.dashboard.DashboardActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.permissions.AppPermissionsActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.permissions.PermissionsActivity" />
+
+        <!-- Shizuku: lets this app receive the binder and bind the user service. -->
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="false"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
     </application>
 </manifest>

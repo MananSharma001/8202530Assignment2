@@ -15,6 +15,7 @@ import com.s8202530.assignment2.databinding.ActivityDashboardBinding
 import com.s8202530.assignment2.ui.common.applySystemBarPadding
 import com.s8202530.assignment2.ui.details.DetailsActivity
 import com.s8202530.assignment2.ui.login.LoginActivity
+import com.s8202530.assignment2.ui.permissions.PermissionsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -48,6 +49,9 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         binding.topicText.text = getString(R.string.dashboard_topic, viewModel.keypass.replaceFirstChar { it.uppercase() })
+        binding.permissionsCard.setOnClickListener {
+            startActivity(PermissionsActivity.newIntent(this))
+        }
         binding.entityList.adapter = adapter
         binding.swipeRefresh.setOnRefreshListener { viewModel.load() }
         binding.retryButton.setOnClickListener { viewModel.load() }

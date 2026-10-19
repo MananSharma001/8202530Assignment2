@@ -2,6 +2,8 @@
 
 NIT3213 Final Assignment: an Android app (Kotlin, XML, Material 3) with three screens: **Login**, **Dashboard** and **Details**. It talks to the `nit3213api` to log in and load your topic's data.
 
+It also includes **Permission Manager**, opened from the Dashboard: it shows which apps on the phone can use your location, camera, microphone and other sensitive data, and lets you switch each permission on or off right in the app (through [Shizuku](https://shizuku.rikka.app/), no root needed).
+
 ## Features
 
 | Screen | What it does |
@@ -9,6 +11,8 @@ NIT3213 Final Assignment: an Android app (Kotlin, XML, Material 3) with three sc
 | **Login** | Student ID (username) and first name (password). Checks the form, sends `POST /footscray/auth`, and shows clear errors for wrong details, no internet or a slow server. On success, opens the Dashboard with the `keypass`. |
 | **Dashboard** | Calls `GET /dashboard/{keypass}` and shows the entities in a **RecyclerView**. Each card is a summary of one entity (every field except the description). Includes pull to refresh, a retry button, an empty state and Log out. Tap a card to open Details. |
 | **Details** | Shows every field of the selected entity, with readable labels, plus the full description. |
+| **App permissions** | Opened from the "App permissions" card on the Dashboard. A summary of how many permissions your apps are allowed, and how many apps can use location, camera and microphone. Then every installed app in a **RecyclerView**, with search, filter chips, a system apps switch and pull to refresh. Rescans whenever you come back, so changes show up straight away. |
+| **App detail** | Every runtime permission one app asked for, grouped like Android's Settings, each with a switch to allow or deny it in place (Shizuku runs `pm grant` / `pm revoke`). If Shizuku isn't installed, running or allowed yet, a banner shows the next step. Live: reads again every 2 seconds while open. |
 
 Each topic returns different field names, so the app doesn't hard code them. It reads whatever fields come back and turns names like `artistName` into "Artist Name".
 
@@ -43,6 +47,9 @@ The API runs on a free Render server, so the first request after a while can tak
 | `RepositoryTest` | Real Retrofit against a fake server (MockWebServer): the correct URL and request body, keypass parsing, entity mapping, and HTTP error mapping. |
 | `EntityMapperTest` | The description is separated out, field order is kept, labels are readable, and lists and nulls are handled. |
 | `LoginValidatorTest` | The form rules. |
+| `PermissionsViewModelTest` | Loads apps from the mocked repository, hides system apps by default, the stats only count installed apps, and the filter chips, search, system switch and pull to refresh work. |
+| `AppPermissionsViewModelTest` | Uses the package name from the Intent, shows that app's permissions, and shows "not found" after an uninstall. Switches grant a denied permission and revoke an allowed one through the mocked controller, report failures, and ask for Shizuku setup when it isn't ready. |
+| `PermissionStatsTest` | The summary numbers and percentage, and permissions are grouped like Settings. |
 
 The ViewModel tests follow the pattern from the Testing lecture: the repository is mocked with **MockK** (`mockk()`, `coEvery { } returns`, `coVerify { }`), `Dispatchers.setMain` swaps in a `StandardTestDispatcher` in `@Before` (reset in `@After`), and `advanceUntilIdle()` runs the queued coroutines before each check. Mocking is easy here because ViewModels only depend on repository **interfaces**, which Hilt binds to the real classes.
 
@@ -61,9 +68,9 @@ Activity (UI)  ─►  ViewModel (@HiltViewModel)  ─►  Repository interface 
 |---|---|
 | `Assignment2App` (`@HiltAndroidApp`) | Starts Hilt and generates the app wide container. |
 | `di/NetworkModule` | `@Provides` OkHttp, Retrofit, `Nit3213Api`, the campus name (`@CampusLocation`) and the IO dispatcher (`@IoDispatcher`), all as `@Singleton` where shared. |
-| `di/RepositoryModule` | `@Binds` `AuthRepository` to `AuthRepositoryImpl` and `DashboardRepository` to `DashboardRepositoryImpl`. |
+| `di/RepositoryModule` | `@Binds` `AuthRepository` to `AuthRepositoryImpl` and `DashboardRepository` to `DashboardRepositoryImpl` and `PermissionRepository` to `PermissionRepositoryImpl` (which reads Android's `PackageManager`), and `PermissionController` to `ShizukuController`. |
 | Repositories | Get their dependencies through `@Inject constructor`. |
-| `LoginViewModel`, `DashboardViewModel` | `@HiltViewModel` with `@Inject constructor`. The Dashboard gets the keypass through `SavedStateHandle`. |
+| `LoginViewModel`, `DashboardViewModel`, `PermissionsViewModel`, `AppPermissionsViewModel` | `@HiltViewModel` with `@Inject constructor`. The Dashboard gets the keypass, and App detail the package name, through `SavedStateHandle`. |
 | Activities | `@AndroidEntryPoint`, so `by viewModels()` returns Hilt built ViewModels. |
 
 No class creates its own dependencies, so each one can be tested on its own.
@@ -77,22 +84,28 @@ app/src/main/java/com/s8202530/assignment2/
 │   ├── ApiResult.kt                  Success / Error result and error mapping
 │   ├── model/
 │   │   ├── Entity.kt                 Entity, EntityField (Parcelable), DashboardData
-│   │   └── EntityMapper.kt           Raw JSON to Entity, readable labels
+│   │   ├── EntityMapper.kt           Raw JSON to Entity, readable labels
+│   │   └── PermissionModels.kt       Permission groups, apps, stats
 │   ├── remote/
 │   │   ├── Nit3213Api.kt             Retrofit endpoints
 │   │   └── dto/ApiDtos.kt            Request and response classes
-│   └── repository/
-│       ├── AuthRepository.kt         Interface + implementation
-│       └── DashboardRepository.kt    Interface + implementation
+│   ├── repository/
+│   │   ├── AuthRepository.kt         Interface + implementation
+│   │   ├── DashboardRepository.kt    Interface + implementation
+│   │   └── PermissionRepository.kt   Interface + PackageManager implementation
+│   └── shizuku/
+│       ├── ShizukuController.kt      PermissionController: grant / revoke through Shizuku
+│       └── UserService.kt            Runs `pm` with ADB rights in Shizuku's process
 ├── di/
 │   ├── NetworkModule.kt
 │   ├── RepositoryModule.kt
 │   └── Qualifiers.kt
 └── ui/
-    ├── common/                       Error messages, edge to edge insets
+    ├── common/                       Error messages, edge to edge insets, app icon loader
     ├── login/                        LoginActivity, LoginViewModel, LoginValidator
     ├── dashboard/                    DashboardActivity, DashboardViewModel, EntityAdapter
-    └── details/                      DetailsActivity
+    ├── details/                      DetailsActivity
+    └── permissions/                  PermissionsActivity, AppPermissionsActivity, their ViewModels and adapters
 ```
 
 ## Libraries

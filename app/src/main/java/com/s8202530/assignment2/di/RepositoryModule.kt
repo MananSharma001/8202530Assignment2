@@ -4,6 +4,10 @@ import com.s8202530.assignment2.data.repository.AuthRepository
 import com.s8202530.assignment2.data.repository.AuthRepositoryImpl
 import com.s8202530.assignment2.data.repository.DashboardRepository
 import com.s8202530.assignment2.data.repository.DashboardRepositoryImpl
+import com.s8202530.assignment2.data.repository.PermissionRepository
+import com.s8202530.assignment2.data.repository.PermissionRepositoryImpl
+import com.s8202530.assignment2.data.shizuku.PermissionController
+import com.s8202530.assignment2.data.shizuku.ShizukuController
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -25,4 +29,11 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindDashboardRepository(impl: DashboardRepositoryImpl): DashboardRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindPermissionRepository(impl: PermissionRepositoryImpl): PermissionRepository
+
+    @Binds
+    abstract fun bindPermissionController(impl: ShizukuController): PermissionController
 }

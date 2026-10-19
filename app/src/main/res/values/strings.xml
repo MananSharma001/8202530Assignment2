@@ -34,6 +34,63 @@
     <string name="no_description">No description provided.</string>
     <string name="empty_value">Not provided</string>
 
+    <!-- Permission Manager -->
+    <string name="title_permissions">App permissions</string>
+    <string name="permissions_entry_subtitle">See what the apps on this phone can access</string>
+    <string name="stat_permissions_allowed">Permissions allowed</string>
+    <string name="stat_granted_value">%1$d of %2$d</string>
+    <string name="stat_granted_caption">%1$d%% of the permissions your %2$d apps asked for are switched on.</string>
+    <string name="stat_location">Location</string>
+    <string name="stat_camera">Camera</string>
+    <string name="stat_microphone">Microphone</string>
+    <string name="search_apps">Search apps</string>
+    <string name="filter_all">All</string>
+    <string name="show_system_apps">System apps</string>
+    <string name="no_apps_match">No apps match.</string>
+    <plurals name="apps_count">
+        <item quantity="one">%d app</item>
+        <item quantity="other">%d apps</item>
+    </plurals>
+    <string name="app_allowed_count">%1$d of %2$d allowed</string>
+    <string name="app_allowed_count_system">%1$d of %2$d allowed · System app</string>
+    <string name="app_uses">Uses %1$s</string>
+
+    <!-- One app's permissions -->
+    <string name="live_label">Live · checks every 2 seconds</string>
+    <string name="detail_meta">Version %1$s · targets API %2$d</string>
+    <string name="detail_meta_system">Version %1$s · targets API %2$d · System app</string>
+    <string name="detail_legacy_note">This app was built for a very old Android version, so Android gives it every permission at install time.</string>
+    <string name="permissions_header">Permissions (%1$d of %2$d allowed)</string>
+    <string name="no_runtime_permissions">This app doesn\'t ask for any runtime permissions.</string>
+    <string name="app_not_found">This app is no longer installed.</string>
+    <string name="permission_meta">%1$s · %2$s</string>
+    <string name="unknown_version">unknown</string>
+    <!-- %1$s permission label, %2$s reason -->
+    <string name="toggle_failed">Couldn\'t change %1$s: %2$s</string>
+
+    <!-- Shizuku setup, needed to change permissions without root -->
+    <string name="shizuku_not_installed">Install Shizuku to switch permissions on and off here. It works without root.</string>
+    <string name="shizuku_install">Get Shizuku</string>
+    <string name="shizuku_not_running">Shizuku isn\'t running. Start it in the Shizuku app (with wireless debugging), then come back.</string>
+    <string name="shizuku_open">Open Shizuku</string>
+    <string name="shizuku_needs_permission">Allow this app to use Shizuku so it can switch permissions on and off.</string>
+    <string name="shizuku_authorize">Allow</string>
+
+    <!-- Permission groups, named like Android's Settings app -->
+    <string name="group_location">Location</string>
+    <string name="group_camera">Camera</string>
+    <string name="group_microphone">Microphone</string>
+    <string name="group_contacts">Contacts</string>
+    <string name="group_phone">Phone and call logs</string>
+    <string name="group_sms">SMS</string>
+    <string name="group_files">Files and media</string>
+    <string name="group_calendar">Calendar</string>
+    <string name="group_body_sensors">Body sensors</string>
+    <string name="group_activity">Physical activity</string>
+    <string name="group_nearby">Nearby devices</string>
+    <string name="group_notifications">Notifications</string>
+    <string name="group_other">Other</string>
+
     <!-- Errors shown to the user -->
     <string name="error_wrong_credentials">Wrong student ID or first name. Check the spelling and capitals.</string>
     <string name="error_no_internet">Can\'t reach the server. Check your internet connection.</string>
